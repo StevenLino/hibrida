@@ -39,6 +39,10 @@
       }
     </ion-list>
 
+    <div class="ion-text-center ion-padding-top ion-padding-bottom">
+      <ion-button fill="outline" color="tertiary">Registrar</ion-button>
+    </div>
+
     }
     <!-- CARGA DE PREDICCIÓN - FIN -->
 
@@ -48,7 +52,7 @@
 
   <input #fileInput type="file" accept="image/*" (change)="onFileSelected($event)" hidden />
 
-  <ion-fab slot="fixed" vertical="bottom" horizontal="center">
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
     <ion-fab-button (click)="fileInput.click()">
       <ion-icon name="cloud-upload-outline"></ion-icon>
     </ion-fab-button>

@@ -1,9 +1,35 @@
-.titulo {
-    color: var(--ion-color-primary);
-      font-weight: bold;
-      text-align: center;
-  }
- 
-  p#descripcion {
-    text-align: justify;
-  }
+ion-card {
+  /* Redondear los bordes */
+  border-radius: 12px;
+  /* Añadir sombra para un toque moderno */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+ion-img {
+  /* Borde redondeado para las imágenes */
+  border-radius: 12px;
+}
+
+ion-header {
+  /* Estilización del header del modal */
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+ion-card-title {
+  /* Ajustar tamaño y color del texto del título */
+  font-size: 18px;
+  font-weight: bold;
+}
+
+ion-item {
+  /* Estilización de los ítems dentro de la lista */
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+ion-label {
+  /* Estilización del texto dentro de los items */
+  font-size: 16px;
+  color: #555;
+}

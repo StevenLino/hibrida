@@ -41,70 +41,72 @@
   </ion-card>
 
 </ion-content> -->
-
 <ion-header>
   <ion-toolbar>
-    <ion-title>Categorías</ion-title>
+    <ion-title>Stock</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-searchbar placeholder="Buscar"></ion-searchbar>
+  
 
+  <!-- Grid de categorías -->
   <ion-grid>
     <ion-row>
-      <ion-col size="6">
-        <ion-card>
-          <img alt="Camisa" src="assets/img/camisa.jpg" style="height: 150px; object-fit: cover; display: block; margin: 0 auto;"/>
-          <ion-card-header>
-            <ion-card-title style="font-size: 18px; text-align: center;">Camisa</ion-card-title>
-          </ion-card-header>
-        </ion-card>
-      </ion-col>
-      <ion-col size="6">
-        <ion-card>
-          <img alt="Camiseta" src="assets/img/camiseta.jpg" style="height: 150px; object-fit: cover; display: block; margin: 0 auto;"/>
-          <ion-card-header>
-            <ion-card-title style="font-size: 18px; text-align: center;">Camiseta</ion-card-title>
-          </ion-card-header>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="6">
-        <ion-card>
-          <img alt="Pantalón" src="assets/img/pantalon.jpg" style="height: 150px; object-fit: cover; display: block; margin: 0 auto;"/>
-          <ion-card-header>
-            <ion-card-title style="font-size: 18px; text-align: center;">Pantalón</ion-card-title>
-          </ion-card-header>
-        </ion-card>
-      </ion-col>
-      <ion-col size="6">
-        <ion-card>
-          <img alt="Pantaloneta" src="assets/img/pantaloneta.jpg" style="height: 150px; object-fit: cover; display: block; margin: 0 auto;"/>
-          <ion-card-header>
-            <ion-card-title style="font-size: 18px; text-align: center;">Pantaloneta</ion-card-title>
-          </ion-card-header>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="6">
-        <ion-card>
-          <img alt="Gorra" src="assets/img/gorra.jpg" style="height: 150px; object-fit: cover; display: block; margin: 0 auto;"/>
-          <ion-card-header>
-            <ion-card-title style="font-size: 18px; text-align: center;">Gorra</ion-card-title>
-          </ion-card-header>
-        </ion-card>
-      </ion-col>
-      <ion-col size="6">
-        <ion-card>
-          <img alt="Calzado" src="assets/img/calzado.jpg" style="height: 150px; object-fit: cover; display: block; margin: 0 auto;"/>
-          <ion-card-header>
-            <ion-card-title style="font-size: 18px; text-align: center;">Calzado</ion-card-title>
+      <ion-col size="6" *ngFor="let item of categorias" (click)="openItemDetails(item)">
+        <ion-card style="border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+          <img 
+            [src]="item.imagen" 
+            alt="{{ item.titulo }}" 
+            style="border-top-left-radius: 12px; border-top-right-radius: 12px; height: 150px; object-fit: cover; display: block; margin: 0 auto;" 
+          />
+          <ion-card-header style="padding: 16px; text-align: center;">
+            <ion-card-title style="font-size: 16px; font-weight: bold;">{{ item.titulo }}</ion-card-title>
           </ion-card-header>
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
-</ion-content>
+  
+  <!-- Modal para mostrar los detalles del producto -->
+  <ion-modal 
+    [isOpen]="isModalOpen" 
+    (click)="onBackdropClick()"
+    (ionBackdropTap)="onBackdropClick()">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>{{ selectedItem?.titulo }}</ion-title>
+          <!-- Botón para cerrar el modal -->
+          <ion-buttons slot="end">
+            <ion-button (click)="closeModal()" >Cerrar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+  
+      <ion-content>
+        <!-- Imagen del producto seleccionado -->
+        <ion-img 
+          [src]="selectedItem?.imagen" 
+          alt="{{ selectedItem?.titulo }}" 
+          style="width: 100%; height: auto; border-radius: 12px; display: block; margin: 20px auto;" 
+        />
+        <ion-list style="margin-top: 20px;">
+          <!-- Información dinámica del producto -->
+          <ion-item>
+            <ion-label><strong>Categoría:</strong></ion-label>
+            <ion-label>{{ selectedItem?.categoria }}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label><strong>Precio:</strong></ion-label>
+            <ion-label>{{ selectedItem?.precio }}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label><strong>Código:</strong></ion-label>
+            <ion-label>{{ selectedItem?.codigo }}</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+  

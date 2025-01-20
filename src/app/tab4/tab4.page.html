@@ -42,68 +42,48 @@
 
 </ion-content> -->
 
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Registrar producto</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-card class="profile-content">
+    <div align="center" class="image">
+      <ion-avatar>
+        <img src="assets/img/perfil.jpeg">
+      </ion-avatar>
+    </div>
 
-<ion-content>
+    <ion-item lines="none" class="profile">
+        <ion-label class="ion-text-center">
+          <ion-text color="secondary-light"> Hatsune Miku</ion-text>
+          <p>
+            <ion-text class="sub">Cantante/Actriz</ion-text>
+          </p>
+        </ion-label>
+    </ion-item>  
 
-  <ion-grid>
-    <ion-row>
-      <ion-col size="6">
-        <ion-card>
-          <img alt="Camisa" src="assets/img/camisa.jpg" style="height: 150px; object-fit: cover; display: block; margin: 0 auto;"/>
-          <ion-card-header>
-            <ion-card-title style="font-size: 18px; text-align: center;">Camisa</ion-card-title>
-          </ion-card-header>
-        </ion-card>
-      </ion-col>
-      <ion-col size="6">
-        <ion-card>
-          <img alt="Camiseta" src="assets/img/camiseta.jpg" style="height: 150px; object-fit: cover; display: block; margin: 0 auto;"/>
-          <ion-card-header>
-            <ion-card-title style="font-size: 18px; text-align: center;">Camiseta</ion-card-title>
-          </ion-card-header>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="6">
-        <ion-card>
-          <img alt="Pantalón" src="assets/img/pantalon.jpg" style="height: 150px; object-fit: cover; display: block; margin: 0 auto;"/>
-          <ion-card-header>
-            <ion-card-title style="font-size: 18px; text-align: center;">Pantalón</ion-card-title>
-          </ion-card-header>
-        </ion-card>
-      </ion-col>
-      <ion-col size="6">
-        <ion-card>
-          <img alt="Pantaloneta" src="assets/img/pantaloneta.jpg" style="height: 150px; object-fit: cover; display: block; margin: 0 auto;"/>
-          <ion-card-header>
-            <ion-card-title style="font-size: 18px; text-align: center;">Pantaloneta</ion-card-title>
-          </ion-card-header>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="6">
-        <ion-card>
-          <img alt="Gorra" src="assets/img/gorra.jpg" style="height: 150px; object-fit: cover; display: block; margin: 0 auto;"/>
-          <ion-card-header>
-            <ion-card-title style="font-size: 18px; text-align: center;">Gorra</ion-card-title>
-          </ion-card-header>
-        </ion-card>
-      </ion-col>
-      <ion-col size="6">
-        <ion-card>
-          <img alt="Calzado" src="assets/img/calzado.jpg" style="height: 150px; object-fit: cover; display: block; margin: 0 auto;"/>
-          <ion-card-header>
-            <ion-card-title style="font-size: 18px; text-align: center;">Calzado</ion-card-title>
-          </ion-card-header>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  </ion-card>
+
+  <ion-card class="options">
+    @for(row of getRows(); track $index){
+      <ion-row class="ion-margin"
+      [ngClass]="{
+        'borderBottom': (($index + 1) * 3) < options.length,
+        'paddingTop': $index == 0
+        }">
+        @for(item of row; track $index){
+          <ion-col size="4" class="ion-text-center">
+            <ion-label>
+              <ion-avatar 
+              [style.background]="'var(--ion-color-' + (item.background || 'light') + ')'">
+                <ion-icon [color]="item.color" [name]="item.icon"></ion-icon>
+              </ion-avatar>
+              <p>
+                <ion-text color="secondary-light">{{item?.title}}</ion-text>
+              </p>
+            </ion-label>
+          </ion-col>
+        }
+      </ion-row>
+    }
+  </ion-card>
+
 </ion-content>
+

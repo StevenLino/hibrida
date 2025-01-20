@@ -13,6 +13,14 @@
     </ion-toolbar>
   </ion-header>
 
+  @if(!imageReady()) {
+    <ion-card>
+      <ion-card-content class="ion-text-center">
+        <ion-icon name="camera" size="large"></ion-icon>
+        <p>Sube o toma una foto de algun producto</p>
+      </ion-card-content>
+    </ion-card>
+  }
   <!-- CARGA DE IMAGEN - INICIO -->
   @if(imageReady()) {
   <ion-card>
@@ -27,9 +35,9 @@
     </div>
 
     <ion-list>
-      <ion-item>
+      <!-- <ion-item>
         <ion-label>Clases: {{ classLabels }} </ion-label>
-      </ion-item>
+      </ion-item> -->
 
       <!-- Itere sobre la lista de predicciones -->
       @for (item of predictions; track $index) {
@@ -40,7 +48,7 @@
     </ion-list>
 
     <div class="ion-text-center ion-padding-top ion-padding-bottom">
-      <ion-button fill="outline" color="tertiary">Registrar</ion-button>
+      <ion-button fill="outline" color="tertiary" (click)="openModal()">Registrar</ion-button>
     </div>
 
     }
@@ -52,10 +60,67 @@
 
   <input #fileInput type="file" accept="image/*" (change)="onFileSelected($event)" hidden />
 
-  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+  <ion-fab slot="fixed" vertical="bottom" horizontal="center">
     <ion-fab-button (click)="fileInput.click()">
       <ion-icon name="cloud-upload-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+
+  <!-- REGISTRO DE PRODUCTO - INICIO -->
+  <ion-modal [isOpen]="modalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Registrar Producto</ion-title>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content>
+        <form [formGroup]="productForm">
+          <ion-list>
+            <ion-item>
+              <ion-label position="stacked">Nombre del Producto</ion-label>
+              <ion-input formControlName="productName" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked">Categoría</ion-label>
+              <ion-input formControlName="productCategory" required readonly></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked">Precio</ion-label>
+              <ion-input type="number" formControlName="productPrice" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked">Imagen</ion-label>
+              <ion-input formControlName="imageName" readonly></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked">Código Único</ion-label>
+              <ion-input formControlName="productCode" readonly></ion-input>
+            </ion-item>
+
+            <div class="ion-padding">
+              <ion-button expand="block" (click)="generateCode()" [disabled]="!productForm.valid">Generar
+                Código</ion-button>
+            </div>
+          </ion-list>
+
+          <div class="ion-padding">
+            <ion-button expand="block" color="primary" (click)="saveProduct()"
+              [disabled]="!productForm.valid || !productForm.get('productCode')?.value">Guardar</ion-button>
+          </div>
+
+          <div class="ion-padding">
+            <ion-button expand="block" color="light" (click)="closeModal()">Cancelar</ion-button>
+          </div>
+        </form>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+  <!-- REGISTRO DE PRODUCTO - FIN -->
 
 </ion-content>

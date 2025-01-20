@@ -70,6 +70,13 @@ export class Tab3Page {
       codigo: 'C001',
     },
     {
+      titulo: 'Camisa3',
+      imagen: 'assets/img/camisa3.jpg',
+      categoria: 'Ropa Formal',
+      precio: '$20.00',
+      codigo: 'C001',
+    },
+    {
       titulo: 'Camiseta1',
       imagen: 'assets/img/camiseta1.jpg',
       categoria: 'Ropa Casual',
@@ -98,6 +105,13 @@ export class Tab3Page {
       codigo: 'P001',
     },
     {
+      titulo: 'Pantalón3',
+      imagen: 'assets/img/pantalon3.jpg',
+      categoria: 'Ropa Formal',
+      precio: '$32.00',
+      codigo: 'P001',
+    },
+    {
       titulo: 'Pantaloneta1',
       imagen: 'assets/img/pantaloneta1.jpg',
       categoria: 'Ropa Deportiva',
@@ -109,6 +123,13 @@ export class Tab3Page {
       imagen: 'assets/img/pantaloneta2.jpg',
       categoria: 'Ropa Deportiva',
       precio: '$15.00',
+      codigo: 'P002',
+    },
+    {
+      titulo: 'Pantaloneta3',
+      imagen: 'assets/img/pantaloneta3.jpg',
+      categoria: 'Ropa Deportiva',
+      precio: '$14.00',
       codigo: 'P002',
     },
     {
@@ -137,6 +158,13 @@ export class Tab3Page {
       imagen: 'assets/img/calzado2.jpg',
       categoria: 'Zapatos',
       precio: '$50.00',
+      codigo: 'Z001',
+    },
+    {
+      titulo: 'Calzado3',
+      imagen: 'assets/img/calzado3.jpg',
+      categoria: 'Zapatos',
+      precio: '$20.00',
       codigo: 'Z001',
     },
   ];
